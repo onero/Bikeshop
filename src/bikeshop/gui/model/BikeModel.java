@@ -11,21 +11,21 @@ import bikeshop.bll.BikeManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class BikeViewModel {
+public class BikeModel {
 
     private final ObservableList<BikeProperty> BIKES_FOR_SALE;
     private final BikeManager BIKE_MANAGER = new BikeManager();
 
-    private static BikeViewModel instance;
+    private static BikeModel instance;
 
-    public static BikeViewModel getInstance() {
+    public static BikeModel getInstance() {
         if (instance == null) {
-            instance = new BikeViewModel();
+            instance = new BikeModel();
         }
         return instance;
     }
 
-    public BikeViewModel() {
+    public BikeModel() {
         BIKES_FOR_SALE = FXCollections.observableArrayList();
         getAllBikes();
     }

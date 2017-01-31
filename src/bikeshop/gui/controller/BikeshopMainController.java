@@ -5,7 +5,7 @@
  */
 package bikeshop.gui.controller;
 
-import bikeshop.gui.model.BikeViewModel;
+import bikeshop.gui.model.BikeModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,10 +30,10 @@ public class BikeshopMainController implements Initializable {
 
     private boolean isListView;
 
-    private final BikeViewModel bikeViewModel;
+    private final BikeModel bikeViewModel;
 
     public BikeshopMainController() {
-        bikeViewModel = BikeViewModel.getInstance();
+        bikeViewModel = BikeModel.getInstance();
         //Make sure we start in the list view
         isListView = true;
         try {

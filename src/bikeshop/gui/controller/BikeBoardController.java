@@ -6,7 +6,7 @@
 package bikeshop.gui.controller;
 
 import bikeshop.be.BikeProperty;
-import bikeshop.gui.model.BikeViewModel;
+import bikeshop.gui.model.BikeModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +25,7 @@ import javafx.scene.layout.FlowPane;
  */
 public class BikeBoardController implements Initializable {
 
-    private BikeViewModel mBikeViewModel;
+    private BikeModel mBikeViewModel;
 
     @FXML
     private FlowPane bikeBoard;
@@ -46,7 +46,7 @@ public class BikeBoardController implements Initializable {
      *
      * @param model
      */
-    public void setBikeBoardModel(BikeViewModel model) {
+    public void setBikeBoardModel(BikeModel model) {
         mBikeViewModel = model;
         loadBikes();
     }
