@@ -26,8 +26,6 @@ public class BikeCellViewController implements Initializable {
     @FXML
     private Label lblPrice;
 
-    private BikeProperty bikeModel;
-
     /**
      * Initializes the controller class.
      */
@@ -36,13 +34,12 @@ public class BikeCellViewController implements Initializable {
 
     }
 
-    public void setBikeModel(BikeProperty model) {
-        bikeModel = model;
-        lblType.textProperty().bind(model.typeProperty());
+    public void setBikeModel(BikeProperty bike) {
+        lblType.textProperty().bind(bike.typeProperty());
         lblType.requestLayout();
-        lblSeller.textProperty().bind(model.sellerProperty());
+        lblSeller.textProperty().bind(bike.sellerProperty());
         lblSeller.requestLayout();
-        lblPrice.textProperty().bind(model.priceProperty().asString());
+        lblPrice.textProperty().bind(bike.priceProperty().asString());
         lblPrice.requestLayout();
     }
 

@@ -7,7 +7,7 @@ package bikeshop.gui.controller;
 
 import bikeshop.be.BikeProperty;
 import bikeshop.gui.controls.BikeCellControls;
-import bikeshop.gui.model.BikeModel;
+import bikeshop.gui.model.BikeViewModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,17 +28,16 @@ import javafx.util.Callback;
  */
 public class BikeViewController implements Initializable {
 
+    private BikeViewModel mModel;
     @FXML
-    private ListView<BikeProperty> mBikeView;
-
-    private BikeModel mModel;
+    private ListView<BikeProperty> bikeView;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        mBikeView.setCellFactory(new Callback<ListView<BikeProperty>, ListCell<BikeProperty>>() {
+        bikeView.setCellFactory(new Callback<ListView<BikeProperty>, ListCell<BikeProperty>>() {
 
             @Override
             public ListCell<BikeProperty> call(ListView<BikeProperty> param) {
@@ -64,9 +63,9 @@ public class BikeViewController implements Initializable {
      *
      * @param model
      */
-    public void setBikeBoardModel(BikeModel model) {
+    public void setBikeBoardModel(BikeViewModel model) {
         this.mModel = model;
-        mBikeView.setItems(model.getBikesForSale());
+        bikeView.setItems(model.getObservableBikes());
     }
 
 }

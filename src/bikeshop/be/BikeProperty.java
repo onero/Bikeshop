@@ -5,7 +5,6 @@
  */
 package bikeshop.be;
 
-import bikeshop.be.Bike;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -13,110 +12,119 @@ import javafx.beans.property.StringProperty;
 
 public class BikeProperty {
 
-    private final StringProperty mType;
-    private final StringProperty mSeller;
-    private final DoubleProperty mPrice;
+    private final StringProperty type = new SimpleStringProperty();
+    private final StringProperty seller = new SimpleStringProperty();
+    private final DoubleProperty price = new SimpleDoubleProperty();
 
-    private final Bike mBike;
+    private Bike bike;
+
+    public BikeProperty(Bike bike) {
+        this.bike = bike;
+        type.set(bike.getType());
+        seller.set(bike.getSeller());
+        price.set(bike.getPrice());
+    }
 
     /**
+     * Gets the bike.
+     *
+     * @return
+     */
+    public Bike getBike() {
+        return bike;
+    }
+
+    /**
+     * Sets the bike.
      *
      * @param bike
      */
-    public BikeProperty(Bike bike) {
-        mType = new SimpleStringProperty();
-        mSeller = new SimpleStringProperty();
-        mPrice = new SimpleDoubleProperty();
-        mBike = bike;
-        mType.set(bike.getType());
-        mSeller.set(bike.getSeller());
-        mPrice.set(bike.getPrice());
+    public void setBike(Bike bike) {
+        this.bike = bike;
     }
 
     /**
+     * Gets the property of type.
      *
-     * @return price
+     * @return
      */
-    public double getPrice() {
-        return mPrice.get();
+    public StringProperty typeProperty() {
+        return type;
     }
 
     /**
-     * Set the price of the bike
+     * Gets the property of seller.
      *
-     * @param value as double
+     * @return
      */
-    public void setPrice(double value) {
-        mPrice.set(value);
-        mBike.setPrice(value);
+    public StringProperty sellerProperty() {
+        return seller;
     }
 
     /**
+     * Gets the propert of price.
      *
-     * @return price property
+     * @return
      */
     public DoubleProperty priceProperty() {
-        return mPrice;
+        return price;
     }
 
     /**
+     * Gets the type.
      *
-     * @return seller
+     * @return
+     */
+    public String getType() {
+        return type.get();
+    }
+
+    /**
+     * Gets the seller.
+     *
+     * @return
      */
     public String getSeller() {
-        return mSeller.get();
+        return seller.get();
     }
 
     /**
-     * Set the seller of the bike
+     * Gets the price.
+     *
+     * @return
+     */
+    public double getPrice() {
+        return price.get();
+    }
+
+    /**
+     * Sets the type.
+     *
+     * @param value
+     */
+    public void setTyp(String value) {
+        type.set(value);
+        bike.setType(value);
+    }
+
+    /**
+     * Sets the seller.
      *
      * @param value
      */
     public void setSeller(String value) {
-        mSeller.set(value);
-        mBike.setSeller(value);
+        seller.set(value);
+        bike.setSeller(value);
     }
 
     /**
-     *
-     * @return seller property
-     */
-    public StringProperty sellerProperty() {
-        return mSeller;
-    }
-
-    /**
-     *
-     * @return type of bike
-     */
-    public String getType() {
-        return mType.get();
-    }
-
-    /**
-     * Set the bike type
+     * Sets the price.
      *
      * @param value
      */
-    public void setType(String value) {
-        mType.set(value);
-        mBike.setType(value);
-    }
-
-    /**
-     *
-     * @return type property
-     */
-    public StringProperty typeProperty() {
-        return mType;
-    }
-
-    /**
-     *
-     * @return bike
-     */
-    public Bike getBike() {
-        return mBike;
+    public void setPrice(double value) {
+        price.set(value);
+        bike.setPrice(value);
     }
 
 }
