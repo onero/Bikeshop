@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<AnchorPane prefHeight="179.0" prefWidth="272.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bikeshop.gui.controller.BikeCellViewController">
+<AnchorPane prefHeight="179.0" prefWidth="272.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bikeshop.gui.controller.SingleBikeController">
    <children>
       <BorderPane prefWidth="259.0" />
       <GridPane hgap="2.0" layoutX="13.0" layoutY="136.0" prefWidth="259.0" vgap="2.0">
