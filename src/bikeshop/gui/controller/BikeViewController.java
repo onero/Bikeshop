@@ -17,8 +17,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
@@ -37,6 +41,13 @@ public class BikeViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        initializeList();
+    }
+
+    /**
+     * Fill the list cell
+     */
+    private void initializeList() {
         bikeView.setCellFactory(new Callback<ListView<BikeProperty>, ListCell<BikeProperty>>() {
 
             @Override
@@ -66,6 +77,30 @@ public class BikeViewController implements Initializable {
     public void setBikeBoardModel(BikeModel model) {
         this.mModel = model;
         bikeView.setItems(model.getObservableBikes());
+    }
+
+    @FXML
+    private void handleBikeClicked() {
+        try {
+            showBike(bikeView.getSelectionModel().getSelectedItem());
+        } catch (IOException ex) {
+            Logger.getLogger(BikeViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void showBike(BikeProperty bike) throws IOException {
+        Stage primStage = (Stage) bikeView.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/bikeshop/gui/view/SingleBike.fxml"));
+        Parent root = loader.load();
+        SingleBikeController controller = loader.getController();
+        controller.setModel(bike);
+        Stage editStage = new Stage();
+        editStage.setScene(new Scene(root));
+
+        editStage.initModality(Modality.WINDOW_MODAL);
+        editStage.initOwner(primStage);
+
+        editStage.show();
     }
 
 }

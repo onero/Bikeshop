@@ -19,7 +19,7 @@ public class Bikeshop extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("gui/view/BikeshopMain.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("gui/view/Main.fxml"));
 
         Scene scene = new Scene(root);
 

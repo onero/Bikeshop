@@ -14,9 +14,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -77,6 +82,23 @@ public class BikeBoardController implements Initializable {
         SingleBikeController singleBikeController = loader.getController();
         singleBikeController.setModel(model);
         return bike;
+    }
+
+    @FXML
+    private void handleShowBike(MouseEvent event) throws IOException {
+        Stage primStage = (Stage) bikeBoard.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/bikeshop/gui/view/SingleBike.fxml"));
+        Parent root = loader.load();
+        SingleBikeController controller = loader.getController();
+        //TODO ALH: MAKE DYNAMIC!
+        controller.setModel(BikeModel.getInstance().getObservableBikes().get(0));
+        Stage editStage = new Stage();
+        editStage.setScene(new Scene(root));
+
+        editStage.initModality(Modality.WINDOW_MODAL);
+        editStage.initOwner(primStage);
+
+        editStage.show();
     }
 
 }
