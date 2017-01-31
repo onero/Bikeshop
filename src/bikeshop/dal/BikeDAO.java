@@ -21,7 +21,7 @@ public class BikeDAO {
 
         for (int i = 0; i < 25; i++) {
             Bike b = new Bike();
-            b.setPrice(LOW_PRICE + PRICE_INTERVAL * rnd.nextDouble());
+            b.setPrice(Math.round(LOW_PRICE + PRICE_INTERVAL * rnd.nextDouble()));
             b.setSeller(b.getSeller() + "_" + i);
             returnList.add(b);
         }

@@ -5,31 +5,37 @@
  */
 package bikeshop.gui.model;
 
-import bikeshop.be.Bike;
 import bikeshop.bll.BikeManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class BikeViewModel {
 
-    private final ObservableList<BikeModel> bikesForSale;
+    private final ObservableList<BikeModel> mBikesForSale;
 
-    private BikeManager manager;
+    private final BikeManager mManager;
 
+    /**
+     * Construct the Model
+     */
     public BikeViewModel() {
-        bikesForSale = FXCollections.observableArrayList();
-        manager = new BikeManager();
+        mBikesForSale = FXCollections.observableArrayList();
+        mManager = new BikeManager();
         getAllBikes();
     }
 
+    /**
+     *
+     * @return bikes for sale list
+     */
     public ObservableList<BikeModel> getBikesForSale() {
-        return bikesForSale;
+        return mBikesForSale;
     }
 
     private void getAllBikes() {
-        for (Bike bike : manager.getAllBikes()) {
-            bikesForSale.add(new BikeModel(bike));
-        }
+        mManager.getAllBikes().forEach((bike) -> {
+            mBikesForSale.add(new BikeModel(bike));
+        });
     }
 
 }

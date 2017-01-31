@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author gta1
+ * @author Adamino
  */
 public class Bikeshop extends Application {
 

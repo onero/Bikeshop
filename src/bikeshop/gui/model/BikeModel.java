@@ -13,17 +13,20 @@ import javafx.beans.property.StringProperty;
 
 public class BikeModel {
 
-    private final StringProperty mType = new SimpleStringProperty();
-    private final StringProperty mSeller = new SimpleStringProperty();
-    private final DoubleProperty mPrice = new SimpleDoubleProperty();
+    private final StringProperty mType;
+    private final StringProperty mSeller;
+    private final DoubleProperty mPrice;
 
-    private Bike mBike;
+    private final Bike mBike;
 
     /**
      *
      * @param bike
      */
     public BikeModel(Bike bike) {
+        mType = new SimpleStringProperty();
+        mSeller = new SimpleStringProperty();
+        mPrice = new SimpleDoubleProperty();
         mBike = bike;
         mType.set(bike.getType());
         mSeller.set(bike.getSeller());
