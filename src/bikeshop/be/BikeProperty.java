@@ -12,17 +12,20 @@ import javafx.beans.property.StringProperty;
 
 public class BikeProperty {
 
-    private final StringProperty type = new SimpleStringProperty();
-    private final StringProperty seller = new SimpleStringProperty();
-    private final DoubleProperty price = new SimpleDoubleProperty();
+    private final StringProperty mType;
+    private final StringProperty mSeller;
+    private final DoubleProperty mPrice;
 
     private Bike bike;
 
     public BikeProperty(Bike bike) {
+        mType = new SimpleStringProperty();
+        mSeller = new SimpleStringProperty();
+        mPrice = new SimpleDoubleProperty();
         this.bike = bike;
-        type.set(bike.getType());
-        seller.set(bike.getSeller());
-        price.set(bike.getPrice());
+        mType.set(bike.getType());
+        mSeller.set(bike.getSeller());
+        mPrice.set(bike.getPrice());
     }
 
     /**
@@ -49,7 +52,7 @@ public class BikeProperty {
      * @return
      */
     public StringProperty typeProperty() {
-        return type;
+        return mType;
     }
 
     /**
@@ -58,7 +61,7 @@ public class BikeProperty {
      * @return
      */
     public StringProperty sellerProperty() {
-        return seller;
+        return mSeller;
     }
 
     /**
@@ -67,7 +70,7 @@ public class BikeProperty {
      * @return
      */
     public DoubleProperty priceProperty() {
-        return price;
+        return mPrice;
     }
 
     /**
@@ -76,7 +79,7 @@ public class BikeProperty {
      * @return
      */
     public String getType() {
-        return type.get();
+        return mType.get();
     }
 
     /**
@@ -85,7 +88,7 @@ public class BikeProperty {
      * @return
      */
     public String getSeller() {
-        return seller.get();
+        return mSeller.get();
     }
 
     /**
@@ -94,7 +97,7 @@ public class BikeProperty {
      * @return
      */
     public double getPrice() {
-        return price.get();
+        return mPrice.get();
     }
 
     /**
@@ -103,7 +106,7 @@ public class BikeProperty {
      * @param value
      */
     public void setTyp(String value) {
-        type.set(value);
+        mType.set(value);
         bike.setType(value);
     }
 
@@ -113,7 +116,7 @@ public class BikeProperty {
      * @param value
      */
     public void setSeller(String value) {
-        seller.set(value);
+        mSeller.set(value);
         bike.setSeller(value);
     }
 
@@ -123,7 +126,7 @@ public class BikeProperty {
      * @param value
      */
     public void setPrice(double value) {
-        price.set(value);
+        mPrice.set(value);
         bike.setPrice(value);
     }
 
