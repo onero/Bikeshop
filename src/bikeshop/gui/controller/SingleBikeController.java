@@ -5,18 +5,28 @@
  */
 package bikeshop.gui.controller;
 
-import bikeshop.gui.model.BikeModel;
+import bikeshop.be.BikeProperty;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.ListChangeListener;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
  *
- * @author gta1
+ * @author Adamino
  */
-public class SingleBikeController implements Initializable, ListChangeListener<BikeModel> {
+public class SingleBikeController implements Initializable {
+
+    @FXML
+    private Label lblType;
+    @FXML
+    private Label lblSeller;
+    @FXML
+    private Label lblPrice;
+
+    private BikeProperty mBikeModel;
 
     /**
      * Initializes the controller class.
@@ -26,14 +36,11 @@ public class SingleBikeController implements Initializable, ListChangeListener<B
         // TODO
     }
 
-    /**
-     * When the model changes we update the view
-     *
-     * @param c
-     */
-    @Override
-    public void onChanged(Change<? extends BikeModel> c) {
-        System.out.println("Make this work");
+    public void setModel(BikeProperty model) {
+        mBikeModel = model;
+        lblType.textProperty().bind(mBikeModel.typeProperty());
+        lblSeller.textProperty().bind(mBikeModel.sellerProperty());
+        lblPrice.textProperty().bind(mBikeModel.priceProperty().asString());
     }
 
 }

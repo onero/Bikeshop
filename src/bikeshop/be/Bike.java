@@ -15,7 +15,7 @@ public class Bike {
 
     private String mSeller = "Adamino";
 
-    private double mPrice = 999999999;
+    private double mPrice;
 
     public Bike(String type, String seller, double price) {
         this.mType = type;

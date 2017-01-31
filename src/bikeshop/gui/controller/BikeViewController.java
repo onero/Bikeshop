@@ -5,8 +5,9 @@
  */
 package bikeshop.gui.controller;
 
+import bikeshop.be.BikeProperty;
+import bikeshop.gui.controls.BikeCellControls;
 import bikeshop.gui.model.BikeModel;
-import bikeshop.gui.model.BikeViewModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,25 +24,25 @@ import javafx.util.Callback;
 /**
  * FXML Controller class
  *
- * @author gta1
+ * @author Adamino
  */
 public class BikeViewController implements Initializable {
 
     @FXML
-    private ListView<BikeModel> bikeView;
+    private ListView<BikeProperty> mBikeView;
 
-    private BikeViewModel model;
+    private BikeModel mModel;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        bikeView.setCellFactory(new Callback<ListView<BikeModel>, ListCell<BikeModel>>() {
+        mBikeView.setCellFactory(new Callback<ListView<BikeProperty>, ListCell<BikeProperty>>() {
 
             @Override
-            public ListCell<BikeModel> call(ListView<BikeModel> param) {
-                BikeCellController<BikeModel> cell = new BikeCellController<>();
+            public ListCell<BikeProperty> call(ListView<BikeProperty> param) {
+                BikeCellControls<BikeProperty> cell = new BikeCellControls<>();
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/bikeshop/gui/view/BikeCellView.fxml"));
                     Node node = loader.load();
@@ -63,9 +64,9 @@ public class BikeViewController implements Initializable {
      *
      * @param model
      */
-    public void setBikeBoardModel(BikeViewModel model) {
-        this.model = model;
-        bikeView.setItems(model.getBikesForSale());
+    public void setBikeBoardModel(BikeModel model) {
+        this.mModel = model;
+        mBikeView.setItems(model.getBikesForSale());
     }
 
 }

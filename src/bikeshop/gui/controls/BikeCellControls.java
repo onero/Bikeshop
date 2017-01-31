@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bikeshop.gui.controller;
+package bikeshop.gui.controls;
 
+import bikeshop.gui.controller.BikeCellViewController;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 
-public class BikeCellController<BikeModel> extends ListCell<BikeModel> {
+public class BikeCellControls<BikeModel> extends ListCell<BikeModel> {
 
     private BikeCellViewController mController;
 
@@ -27,7 +28,7 @@ public class BikeCellController<BikeModel> extends ListCell<BikeModel> {
         if (empty) {
             setGraphic(null); //If this ListCell should be displayed as an ampty one.
         } else {
-            mController.setBikeModel((bikeshop.gui.model.BikeModel) item); //We assign a new BikeModel to display in this cell.
+            mController.setBikeModel((bikeshop.be.BikeProperty) item); //We assign a new BikeModel to display in this cell.
             setGraphic(mView); // Update the graphics.
         }
     }

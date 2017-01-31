@@ -5,7 +5,7 @@
  */
 package bikeshop.gui.controller;
 
-import bikeshop.gui.model.BikeViewModel;
+import bikeshop.gui.model.BikeModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,23 +24,48 @@ public class BikeshopMainController implements Initializable {
     @FXML
     private BorderPane borderPane;
 
-    private BikeViewModel bikeViewModel;
+    private Node LIST_VIEW;
+
+    private Node BOARD_VIEW;
+
+    private boolean isListView;
+
+    private final BikeModel bikeViewModel;
 
     public BikeshopMainController() {
-        bikeViewModel = new BikeViewModel();
+        bikeViewModel = BikeModel.getInstance();
+        //Make sure we start in the list view
+        isListView = true;
+        try {
+            LIST_VIEW = getBikeList();
+            BOARD_VIEW = getBikeBoard();
+        } catch (Exception e) {
+            System.out.println("OMG " + e + "\n");
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            borderPane.setCenter(getBikeList());
-        } catch (Exception e) {
-            System.out.println("OMG " + e);
-        }
+        borderPane.setCenter(LIST_VIEW);
     }
 
     /**
-     * Interpolate the bikeView
+     * Interpolate the bikeBoard
+     *
+     * @return
+     * @throws IOException
+     */
+    private Node getBikeBoard() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/bikeshop/gui/view/BikeBoard.fxml"));
+        Node node = loader.load();
+        BikeBoardController controller = loader.getController();
+        controller.setBikeBoardModel(bikeViewModel);
+        return node;
+    }
+
+    /**
+     * Interpolate the bikeList
      *
      * @return
      * @throws IOException
@@ -51,6 +76,22 @@ public class BikeshopMainController implements Initializable {
         BikeViewController controller = loader.getController();
         controller.setBikeBoardModel(bikeViewModel);
         return node;
+    }
+
+    /**
+     * Switches the view
+     *
+     * @throws IOException
+     */
+    @FXML
+    private void handleSwitchViewButton() throws IOException {
+        if (isListView) {
+            borderPane.setCenter(BOARD_VIEW);
+            isListView = false;
+        } else {
+            borderPane.setCenter(LIST_VIEW);
+            isListView = true;
+        }
     }
 
 }

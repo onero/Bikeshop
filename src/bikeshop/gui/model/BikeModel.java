@@ -5,118 +5,51 @@
  */
 package bikeshop.gui.model;
 
-import bikeshop.be.Bike;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import bikeshop.be.BikeProperty;
+import bikeshop.bll.BikeManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class BikeModel {
 
-    private final StringProperty mType;
-    private final StringProperty mSeller;
-    private final DoubleProperty mPrice;
+    private final ObservableList<BikeProperty> mBikesForSale;
 
-    private final Bike mBike;
+    private final BikeManager mManager;
+
+    public static BikeModel instance;
+
+    public static BikeModel getInstance() {
+        if (instance == null) {
+            instance = new BikeModel();
+        }
+        return instance;
+    }
 
     /**
-     *
-     * @param bike
+     * Construct the Model
      */
-    public BikeModel(Bike bike) {
-        mType = new SimpleStringProperty();
-        mSeller = new SimpleStringProperty();
-        mPrice = new SimpleDoubleProperty();
-        mBike = bike;
-        mType.set(bike.getType());
-        mSeller.set(bike.getSeller());
-        mPrice.set(bike.getPrice());
+    private BikeModel() {
+        mBikesForSale = FXCollections.observableArrayList();
+        mManager = new BikeManager();
+        getAllBikes();
     }
 
     /**
      *
-     * @return price
+     * @return bikes for sale list
      */
-    public double getPrice() {
-        return mPrice.get();
+    public ObservableList<BikeProperty> getBikesForSale() {
+        return mBikesForSale;
     }
 
     /**
-     * Set the price of the bike
-     *
-     * @param value as double
+     * Create a BikeProperty from each "saved" bike and add it to the
+     * ObservableList
      */
-    public void setPrice(double value) {
-        mPrice.set(value);
-        mBike.setPrice(value);
-    }
-
-    /**
-     *
-     * @return price property
-     */
-    public DoubleProperty priceProperty() {
-        return mPrice;
-    }
-
-    /**
-     *
-     * @return seller
-     */
-    public String getSeller() {
-        return mSeller.get();
-    }
-
-    /**
-     * Set the seller of the bike
-     *
-     * @param value
-     */
-    public void setSeller(String value) {
-        mSeller.set(value);
-        mBike.setSeller(value);
-    }
-
-    /**
-     *
-     * @return seller property
-     */
-    public StringProperty sellerProperty() {
-        return mSeller;
-    }
-
-    /**
-     *
-     * @return type of bike
-     */
-    public String getType() {
-        return mType.get();
-    }
-
-    /**
-     * Set the bike type
-     *
-     * @param value
-     */
-    public void setType(String value) {
-        mType.set(value);
-        mBike.setType(value);
-    }
-
-    /**
-     *
-     * @return type property
-     */
-    public StringProperty typeProperty() {
-        return mType;
-    }
-
-    /**
-     *
-     * @return bike
-     */
-    public Bike getBike() {
-        return mBike;
+    private void getAllBikes() {
+        mManager.getAllBikes().forEach((bike) -> {
+            mBikesForSale.add(new BikeProperty(bike));
+        });
     }
 
 }
