@@ -7,11 +7,15 @@ package bikeshop.be;
 
 public class Bike {
 
-    private String mType;
+    public Bike() {
 
-    private String mSeller;
+    }
 
-    private double mPrice;
+    private String mType = "Awesome bike";
+
+    private String mSeller = "Adamino";
+
+    private double mPrice = 999999999;
 
     public Bike(String type, String seller, double price) {
         this.mType = type;

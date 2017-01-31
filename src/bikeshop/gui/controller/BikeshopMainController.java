@@ -5,6 +5,7 @@
  */
 package bikeshop.gui.controller;
 
+import bikeshop.gui.model.BikeViewModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,12 +17,18 @@ import javafx.scene.layout.BorderPane;
 
 /**
  *
- * @author gta1
+ * @author Adamino
  */
 public class BikeshopMainController implements Initializable {
 
     @FXML
     private BorderPane borderPane;
+
+    private BikeViewModel bikeViewModel;
+
+    public BikeshopMainController() {
+        bikeViewModel = new BikeViewModel();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -42,7 +49,7 @@ public class BikeshopMainController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/bikeshop/gui/view/BikeView.fxml"));
         Node node = loader.load();
         BikeViewController controller = loader.getController();
-//        controller.setBikeBoardModel(bikeBoardModel);
+        controller.setBikeBoardModel(bikeViewModel);
         return node;
     }
 

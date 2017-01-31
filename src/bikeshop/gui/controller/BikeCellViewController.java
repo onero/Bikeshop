@@ -5,6 +5,7 @@
  */
 package bikeshop.gui.controller;
 
+import bikeshop.gui.model.BikeModel;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ import javafx.scene.control.Label;
 /**
  * FXML Controller class
  *
- * @author gta1
+ * @author Adamino
  */
 public class BikeCellViewController implements Initializable {
 
@@ -25,12 +26,24 @@ public class BikeCellViewController implements Initializable {
     @FXML
     private Label lblPrice;
 
+    private BikeModel bikeModel;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
+    }
+
+    public void setBikeModel(BikeModel model) {
+        bikeModel = model;
+        lblType.textProperty().bind(model.typeProperty());
+        lblType.requestLayout();
+        lblSeller.textProperty().bind(model.sellerProperty());
+        lblSeller.requestLayout();
+        lblPrice.textProperty().bind(model.priceProperty().asString());
+        lblPrice.requestLayout();
     }
 
 }

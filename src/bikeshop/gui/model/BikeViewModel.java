@@ -5,12 +5,31 @@
  */
 package bikeshop.gui.model;
 
+import bikeshop.be.Bike;
+import bikeshop.bll.BikeManager;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class BikeViewModel {
 
+    private final ObservableList<BikeModel> bikesForSale;
+
+    private BikeManager manager;
+
+    public BikeViewModel() {
+        bikesForSale = FXCollections.observableArrayList();
+        manager = new BikeManager();
+        getAllBikes();
+    }
+
     public ObservableList<BikeModel> getBikesForSale() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bikesForSale;
+    }
+
+    private void getAllBikes() {
+        for (Bike bike : manager.getAllBikes()) {
+            bikesForSale.add(new BikeModel(bike));
+        }
     }
 
 }
