@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author gta1
+ * @author Adamino
  */
 public class BikeBoardController implements Initializable {
 
@@ -86,12 +86,15 @@ public class BikeBoardController implements Initializable {
 
     @FXML
     private void handleShowBike(MouseEvent event) throws IOException {
+        //TODO ALH: Make sure to get an AnchorPane!!!
+        Node node = (Node) event.getTarget();
+
+        int bikeIndex = bikeBoard.getChildren().indexOf(node);
         Stage primStage = (Stage) bikeBoard.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/bikeshop/gui/view/SingleBike.fxml"));
         Parent root = loader.load();
         SingleBikeController controller = loader.getController();
-        //TODO ALH: MAKE DYNAMIC!
-        controller.setModel(BikeModel.getInstance().getObservableBikes().get(0));
+        controller.setModel(BikeModel.getInstance().getObservableBikes().get(bikeIndex));
         Stage editStage = new Stage();
         editStage.setScene(new Scene(root));
 
