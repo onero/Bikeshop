@@ -88,8 +88,8 @@ public class BikeBoardController implements Initializable {
     private void handleShowBike(MouseEvent event) throws IOException {
         //TODO ALH: Make sure to get an AnchorPane!!!
         Node node = (Node) event.getTarget();
-
         int bikeIndex = bikeBoard.getChildren().indexOf(node);
+
         Stage primStage = (Stage) bikeBoard.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/bikeshop/gui/view/SingleBike.fxml"));
         Parent root = loader.load();
